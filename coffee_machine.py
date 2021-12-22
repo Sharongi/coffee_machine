@@ -38,8 +38,6 @@ def report():
     print(f"Water: {resources['coffee']}gr")
     print(f"Money: ${money}")
 
-sufficient = True
-
 working = True
 while working:
     user_choice = input("What would you like? (espresso/latte/cappuccino): ")
