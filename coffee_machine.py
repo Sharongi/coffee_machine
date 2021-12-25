@@ -41,6 +41,7 @@ def report():
 working = True
 while working:
     user_choice = input("What would you like? (espresso/latte/cappuccino): ")
+    ingredients = MENU[user_choice]["ingredients"]
     if user_choice == "report":
         report()
     #TODO1 make a turn off button by typing "off"
@@ -49,8 +50,8 @@ while working:
     #TODO3 check if resources are sufficient 
     elif user_choice =="espresso" or "latte" or "cappuccino" :
         sufficient_resources = True
-        for key in resources:
-            if resources[key] < MENU[user_choice]["ingredients"][key]:
+        for key in ingredients:
+            if ingredients[key] > resources[key]:
                 print(f"Sorry there is not enough {key}.")
                 sufficient_resources = False
         if sufficient_resources:
@@ -65,7 +66,7 @@ while working:
                 print("Sorry that's not enough money. Money refunded.")
             else:
                 print(f"Here is ${total_coins - MENU[user_choice]['cost'] } dollars in change.")
-                for key in resources:
-                    resources[key] -= MENU[user_choice]["ingredients"][key]
+                for key in ingredients:
+                    resources[key] -= ingredients[key]
                 money += MENU[user_choice]["cost"]
                 print(f"Here is your {user_choice}. Enjoy!")
